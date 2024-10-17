@@ -2,5 +2,5 @@
 
 <?import javafx.scene.layout.*?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="me.mdzs.apartmentbooking.app.desktop.controller.Controller">
+      fx:controller="me.mdzs.apartmentbooking.app.desktop.controllers.Controller">
 </VBox>
