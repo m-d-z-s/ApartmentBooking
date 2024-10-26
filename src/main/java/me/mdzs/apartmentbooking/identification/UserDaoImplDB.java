@@ -8,7 +8,7 @@ public class UserDaoImplDB implements UserDao<User>{
 
 
     @Override
-    public User getUser(String user) {
+    public Boolean getUser(String user, String password) {
         return null;
     }
 

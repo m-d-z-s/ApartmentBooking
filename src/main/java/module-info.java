@@ -9,6 +9,8 @@ module apartmentbooking {
     requires javafx.controls;
     requires javafx.fxml;
     requires json.simple;
+    requires thymeleaf.spring5;
+    requires thymeleaf;
 
 
     opens me.mdzs.apartmentbooking.app.desktop.controllers to javafx.fxml;

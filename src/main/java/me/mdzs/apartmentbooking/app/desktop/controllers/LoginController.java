@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import me.mdzs.apartmentbooking.domain.User;
+import me.mdzs.apartmentbooking.identification.UserDaoImplJson;
 
 import java.io.IOException;
 
@@ -25,16 +27,21 @@ public class LoginController {
     private void handleLogin() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-//        if (UserManager.login(username, password)) {
-//            // Переход на BookingView или AdminView в зависимости от роли
-//            BookingView bookingView = new BookingView();
-//            bookingView.start(new Stage());
-//            // Закрытие текущего окна
-//            Stage stage = (Stage) usernameField.getScene().getWindow();
-//            stage.close();
-//        } else {
-//            System.out.println("Invalid login.");
-//        }
+
+        if (username.isEmpty() || password.isEmpty()) {
+            System.out.println("Username and password cannot be empty.");
+            return;
+        }
+
+        // Инициализируем UserDaoImplJson и проверяем данные пользователя
+        UserDaoImplJson userDao = new UserDaoImplJson();
+        Boolean flag = userDao.getUser(username, password);
+
+        if (flag) {
+            System.out.println("Login successful");
+        } else {
+            System.out.println("Invalid username or password");
+        }
     }
 
     @FXML

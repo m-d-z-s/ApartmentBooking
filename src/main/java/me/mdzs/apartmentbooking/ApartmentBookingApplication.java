@@ -1,4 +1,4 @@
-package me.mdzs.apartmentbooking;
+//package me.mdzs.apartmentbooking;
 //
 //import javafx.application.Application;
 //import org.springframework.boot.SpringApplication;
@@ -15,4 +15,4 @@ package me.mdzs.apartmentbooking;
 //	}
 //
 //}
-
+//

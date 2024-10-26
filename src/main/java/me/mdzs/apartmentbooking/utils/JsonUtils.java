@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.List;
 
 import me.mdzs.apartmentbooking.domain.User;
 import org.json.simple.JSONObject;
@@ -18,10 +19,16 @@ public class JsonUtils<T>{
         this.jsonPath = jsonPath;
     }
 
-    public T readJson(){
-//        JSONParser jsonParser = new JSONParser();
-//        JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader(jsonPath));
-        return null;
+    public T readJson() {
+        JSONParser jsonParser = new JSONParser();
+        try (FileReader reader = new FileReader(jsonPath)) {
+            // Парсим содержимое JSON файла
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+            return (T) jsonObject;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void writeJson(User user) throws IOException {
@@ -29,5 +36,10 @@ public class JsonUtils<T>{
         FileWriter file = new FileWriter(jsonPath);
         file.write(jsonObject.toJSONString());
         file.close();
+    }
+    public void writeListToJson(List<User> list) throws IOException {
+        for (User user : list){
+            writeJson(user);
+        }
     }
 }
