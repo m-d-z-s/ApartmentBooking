@@ -5,18 +5,20 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
+<?import javafx.geometry.Insets?>
 <VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="me.mdzs.apartmentbooking.app.desktop.controllers.LoginController"
-      prefHeight="400.0" prefWidth="600.0">
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="me.mdzs.apartmentbooking.app.desktop.controllers.RegistrationController"
+            prefHeight="400.0" prefWidth="600.0">
+    <Label fx:id="status"/>
     <Label text="Username:"/>
     <TextField fx:id="usernameField"/>
     <Label text="Password:"/>
     <PasswordField fx:id="passwordField"/>
-    <Button fx:id="signIn" text="Sign in" onAction="#handleLogin"/>
     <Button fx:id="signUp" text="Sign up" onAction="#handleRegister"/>
+    <Label>If you already have an account</Label>
+    <Button fx:id="signIn" text="Sign in" onAction="#handleLogin"/>
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>

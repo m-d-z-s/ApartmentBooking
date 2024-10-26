@@ -36,6 +36,7 @@ public class UserDaoImplJson implements UserDao<User>{
     @Override
     public void delete(User user) {
         userList.removeIf(user1 -> user1.equals(user));
+        //json.writeJson(); сохранение изменение
     }
 
     @Override
@@ -43,12 +44,19 @@ public class UserDaoImplJson implements UserDao<User>{
         for (User user1 : userList){
             if (Objects.equals(user1.getUserName(), user.getUserName())){
                 user1.setPassword(user.getPassword());
+                break;
             }
         }
+        //json.writeJson(userList); сохранение изменение
     }
 
     @Override
     public void save(User user) {
         userList.add(user);
+        //json.writeJson(userList); сохранение изменение
+    }
+
+    private void updateJsonFile(){
+//        json.writeJson(userList);
     }
 }

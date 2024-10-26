@@ -8,8 +8,7 @@ module apartmentbooking {
 
     requires javafx.controls;
     requires javafx.fxml;
-
-
+    requires json.simple;
 
 
     opens me.mdzs.apartmentbooking.app.desktop.controllers to javafx.fxml;
@@ -17,6 +16,7 @@ module apartmentbooking {
 
     opens me.mdzs.apartmentbooking.app.desktop to javafx.fxml;
     exports me.mdzs.apartmentbooking.app.desktop;
+
     opens me.mdzs.apartmentbooking.domain to javafx.fxml;
     exports me.mdzs.apartmentbooking.domain;
 }
