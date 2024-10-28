@@ -5,12 +5,14 @@ module apartmentbooking {
     requires spring.core;
     requires spring.beans;
     requires spring.web;
+//    requires com.google.gson;
 
     requires javafx.controls;
     requires javafx.fxml;
     requires json.simple;
     requires thymeleaf.spring5;
     requires thymeleaf;
+    requires com.fasterxml.jackson.databind;
 
 
     opens me.mdzs.apartmentbooking.app.desktop.controllers to javafx.fxml;

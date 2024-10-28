@@ -7,9 +7,12 @@ public class User {
 
     private String password;
 
-    public User(String userName, String userPassword) {
+    private Boolean isAdmin;
+
+    public User(String userName, String userPassword, boolean isAdmin) {
         this.userName = userName;
         this.password = userPassword;
+        this.isAdmin = isAdmin;
     }
 
     public String getPassword() {
@@ -27,6 +30,15 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
+    }
+
 
 
     @Override
@@ -46,5 +58,10 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hashCode(userName);
+    }
+
+    public User makeAdmin(User user){
+        user.isAdmin = true;
+        return user;
     }
 }

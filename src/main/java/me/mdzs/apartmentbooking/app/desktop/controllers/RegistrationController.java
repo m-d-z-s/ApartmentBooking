@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import me.mdzs.apartmentbooking.identification.UserDaoImplJson;
@@ -27,11 +28,10 @@ public class RegistrationController {
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
-    private final UserDaoImplJson userdao;
+    private final UserDaoImplJson userdao= new UserDaoImplJson();
 
-    public RegistrationController(){
-        userdao = new UserDaoImplJson();
-    }
+//    public RegistrationController(){
+//    }
 
 
     @FXML
@@ -46,6 +46,8 @@ public class RegistrationController {
 
         // Проверка, существует ли пользователь с таким же именем
         List<User> list = userdao.getAll();
+//        list.add(new User("Ira", "1234", true));
+
         for (User u : list){
             if (u.getUserName().equals(username)){
                 status.setText("Username is already taken.");
@@ -54,7 +56,7 @@ public class RegistrationController {
         }
 
         // Создание и сохранение нового пользователя
-        User newUser = new User(username, password);
+        User newUser = new User(username, password, false);
         userdao.save(newUser);
         status.setText("Registration successful! You can now log in.");
 

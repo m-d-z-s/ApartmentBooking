@@ -10,12 +10,11 @@ import java.util.Objects;
 
 public class UserDaoImplJson implements UserDao<User>{
     private JsonUtils<List<User>> json;
-    String PATH = "resources/usersData.json";
+    String PATH = "src/main/resources/usersData.json";
 
 
     public UserDaoImplJson(){
         this.json = new JsonUtils<>(PATH);
-        File file = new File(PATH);
     }
 
     /**
@@ -27,7 +26,7 @@ public class UserDaoImplJson implements UserDao<User>{
      * @return объект User, если пользователь найден и пароль совпадает, иначе null
      */
     @Override
-    public Boolean getUser(String user, String password) {
+    public Boolean getUser(String user, String password) throws IOException {
         List<User> userList = getAll();
         for (User u : userList) {
             if (u.getUserName().equals(user) && u.getPassword().equals(password)) {
@@ -38,12 +37,12 @@ public class UserDaoImplJson implements UserDao<User>{
     }
 
     @Override
-    public List<User> getAll() {
-        return json.readJson();
+    public List<User> getAll() throws IOException {
+        return json.readJsonToList(PATH);
     }
 
     @Override
-    public void delete(User user) {
+    public void delete(User user) throws IOException {
         List<User> userList = getAll();
         userList.removeIf(user1 -> user1.equals(user));
 
@@ -78,6 +77,8 @@ public class UserDaoImplJson implements UserDao<User>{
     @Override
     public void save(User user) throws IOException {
         List<User> userList = getAll();
-        json.writeJson(user);
+//        json.writeJson(user);
+//        userList.add(user);
+        json.writeListToJson(userList);
     }
 }
