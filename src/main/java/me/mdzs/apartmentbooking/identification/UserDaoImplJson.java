@@ -8,20 +8,18 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class UserDaoImplJson implements UserDao<User>{
-    private JsonUtils<List<User>> json;
-    String PATH = "src/main/resources/usersData.json";
+public class UserDaoImplJson implements UserDao<User> {
+
+    private final String PATH = "src/main/resources/usersData.json";
 
 
-    public UserDaoImplJson(){
-        this.json = new JsonUtils<>(PATH);
+    public UserDaoImplJson() {
     }
-
     /**
      * Получает пользователя по имени и паролю.
      * Используется для авторизации.
      *
-     * @param user имя пользователя
+     * @param user     имя пользователя
      * @param password пароль пользователя
      * @return объект User, если пользователь найден и пароль совпадает, иначе null
      */
@@ -38,7 +36,7 @@ public class UserDaoImplJson implements UserDao<User>{
 
     @Override
     public List<User> getAll() throws IOException {
-        return json.readJsonToList(PATH);
+        return JsonUtils.readJsonToList(PATH);
     }
 
     @Override
@@ -46,7 +44,7 @@ public class UserDaoImplJson implements UserDao<User>{
         List<User> userList = getAll();
         userList.removeIf(user1 -> user1.equals(user));
 
-        //json.writeJson(); сохранение изменение
+        JsonUtils.writeListToJson(userList, PATH);
     }
 
     /**
@@ -57,14 +55,13 @@ public class UserDaoImplJson implements UserDao<User>{
     @Override
     public void update(User userNew) throws IOException {
         List<User> userList = getAll();
-        json = new JsonUtils<>(PATH);//TODO: "работает ли стирание данных?"
-        for (User user : userList){
-            if (Objects.equals(user.getUserName(), userNew.getUserName())){
+        for (User user : userList) {
+            if (Objects.equals(user.getUserName(), userNew.getUserName())) {
                 user.setPassword(userNew.getPassword());
                 break;
             }
         }
-        json.writeListToJson(userList);
+        JsonUtils.writeListToJson(userList, PATH);
     }
 
     /**
@@ -79,6 +76,7 @@ public class UserDaoImplJson implements UserDao<User>{
         List<User> userList = getAll();
 //        json.writeJson(user);
 //        userList.add(user);
-        json.writeListToJson(userList);
+        JsonUtils.writeListToJson(userList, PATH);
+
     }
 }

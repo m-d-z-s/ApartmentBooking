@@ -31,20 +31,20 @@ public class User {
         this.userName = userName;
     }
 
-    public Boolean getAdmin() {
+    public Boolean getIsAdmin() {
         return isAdmin;
     }
 
-    public void setAdmin(Boolean admin) {
+    public void setIsAdmin(Boolean admin) {
         isAdmin = admin;
     }
-
-
 
     @Override
     public String toString() {
         return "User{" +
                 "userName='" + userName + '\'' +
+                "password='" + password + '\'' +
+                "isAdmin=" + isAdmin +
                 '}';
     }
 

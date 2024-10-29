@@ -30,8 +30,6 @@ public class RegistrationController {
     private PasswordField passwordField;
     private final UserDaoImplJson userdao= new UserDaoImplJson();
 
-//    public RegistrationController(){
-//    }
 
 
     @FXML

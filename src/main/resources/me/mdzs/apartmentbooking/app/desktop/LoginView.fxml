@@ -16,6 +16,7 @@
     <Label text="Password:"/>
     <PasswordField fx:id="passwordField"/>
     <Button fx:id="signIn" text="Sign in" onAction="#handleLogin"/>
+    <Label>Don't have an account?</Label>
     <Button fx:id="signUp" text="Sign up" onAction="#handleRegister"/>
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
