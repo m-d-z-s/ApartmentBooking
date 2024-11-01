@@ -1,1 +1,12 @@
-[{"userName":"Alice","password":"25","isAdmin":false},{"userName":"Bob","password":"30","isAdmin":true}]
+[
+  {
+    "userName": "Ira",
+    "password": "5421fhx3",
+    "isAdmin": false
+  },
+  {
+    "userName": "john",
+    "password": "5522",
+    "isAdmin": false
+  }
+]

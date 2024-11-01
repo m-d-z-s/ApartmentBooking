@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -18,6 +19,7 @@ public class LoginController {
     public Button signIn;
     @FXML
     public Button signUp;
+    public Label status;
     @FXML
     private TextField usernameField;
     @FXML
@@ -25,7 +27,7 @@ public class LoginController {
 
     @FXML
     private void handleLogin() throws IOException {
-        String username = usernameField.getText();
+        String username = usernameField.getText().toLowerCase();
         String password = passwordField.getText();
 
         if (username.isEmpty() || password.isEmpty()) {
@@ -38,9 +40,9 @@ public class LoginController {
         Boolean flag = userDao.getUser(username, password);
 
         if (flag) {
-            System.out.println("Login successful");
+            status.setText("Login successful");
         } else {
-            System.out.println("Invalid username or password");
+            status.setText("Invalid username or password");
         }
     }
 

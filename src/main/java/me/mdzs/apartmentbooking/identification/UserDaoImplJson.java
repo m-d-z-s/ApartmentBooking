@@ -73,10 +73,18 @@ public class UserDaoImplJson implements UserDao<User> {
      */
     @Override
     public void save(User user) throws IOException {
+        boolean flag = true;
         List<User> userList = getAll();
-//        json.writeJson(user);
-//        userList.add(user);
-        JsonUtils.writeListToJson(userList, PATH);
+        for (User user_old : userList) {
+            if (Objects.equals(user_old.getUserName(), user.getUserName())) {
+                flag = false;
+                break;
+            }
+        }
+        if(flag){
+            userList.add(user);
+            JsonUtils.writeListToJson(userList, PATH);
+        }
 
     }
 }

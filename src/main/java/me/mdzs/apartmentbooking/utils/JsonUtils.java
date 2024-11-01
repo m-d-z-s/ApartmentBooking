@@ -1,9 +1,11 @@
 package me.mdzs.apartmentbooking.utils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import me.mdzs.apartmentbooking.domain.User;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,7 +14,7 @@ import java.util.List;
 
 public class JsonUtils {
 
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public static List<User> readJsonToList(String filePath) throws IOException {
         try (FileReader reader = new FileReader(filePath)) {
@@ -22,6 +24,10 @@ public class JsonUtils {
     }
 
     public static void writeListToJson(List<User> list, String filePath) throws IOException {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
         try (FileWriter writer = new FileWriter(filePath)) {
             gson.toJson(list, writer);
         }
