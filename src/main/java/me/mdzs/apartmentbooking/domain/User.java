@@ -14,6 +14,12 @@ public class User {
         this.password = userPassword;
         this.isAdmin = isAdmin;
     }
+    public User(String userName, String userPassword) {
+        this.userName = userName;
+        this.password = userPassword;
+        this.isAdmin = Boolean.FALSE;
+    }
+
 
     public String getPassword() {
         return password;

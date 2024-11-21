@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.mdzs.apartmentbooking.identification.UserDaoImplDB;
 import me.mdzs.apartmentbooking.identification.UserDaoImplJson;
 import me.mdzs.apartmentbooking.domain.User;
 
@@ -28,7 +29,8 @@ public class RegistrationController {
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
-    private final UserDaoImplJson userdao= new UserDaoImplJson();
+    private final UserDaoImplJson userdao = new UserDaoImplJson();
+//    private final UserDaoImplDB userdao = new UserDaoImplDB();
 
 
 

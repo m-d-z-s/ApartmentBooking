@@ -9,10 +9,9 @@ import java.util.List;
 
 public class DBUtils {
 
-    private static final String URL = "jdbc:sqlite:users.db";
 
     // Инициализация базы данных и создание таблицы, если её нет
-    public static void initializeDatabase() {
+    public static void initializeDatabase(String URL) {
         // Проверка наличия файла базы данных
         File dbFile = new File("users.db");
         if (!dbFile.exists()) {
@@ -39,7 +38,7 @@ public class DBUtils {
     }
 
     // Метод для добавления пользователя в базу данных
-    public static void addUser(User user) {
+    public static void addUser(User user, String URL) {
         String sql = "INSERT INTO users(userName, password, isAdmin) VALUES(?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(URL);
@@ -54,7 +53,8 @@ public class DBUtils {
     }
 
     // Метод для получения пользователя из базы данных по имени пользователя
-    public static User getUser(String userName) {
+    // Метод для получения пользователя из базы данных по имени пользователя и паролю
+    public static User getUser(String userName, String URL) {
         String sql = "SELECT * FROM users WHERE userName = ?";
         User user = null;
 
@@ -74,7 +74,30 @@ public class DBUtils {
         return user;
     }
 
-    public static List<User> getAllUsers() {
+    public static Boolean checkIfUserExist(User userOld, String URL) {
+        String sql = "SELECT * FROM users WHERE userName = ? AND password = ?";
+        User user = null;
+        boolean flag = false;
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, userOld.getUserName());
+            pstmt.setString(2, userOld.getPassword()); // Устанавливаем значение для пароля
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+//                boolean isAdmin = rs.getInt("isAdmin") == 1;
+//                user = new User( userOld.getUserName(), userOld.getPassword(), isAdmin);
+                flag = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Ошибка получения пользователя: " + e.getMessage());
+        }
+        return flag;
+    }
+
+
+    public static List<User> getAllUsers(String URL) {
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM users";
 
@@ -93,4 +116,26 @@ public class DBUtils {
         }
         return users;
     }
+
+    public static void removeUser(User user, String URL) {
+        String sql = "DELETE FROM users WHERE userName = ? AND password = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, user.getUserName());
+            pstmt.setString(2, user.getPassword());
+
+            int affectedRows = pstmt.executeUpdate();
+
+            if (affectedRows > 0) {
+                System.out.println("Пользователь успешно удален.");
+            } else {
+                System.out.println("Пользователь не найден.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Ошибка удаления пользователя: " + e.getMessage());
+        }
+    }
+
 }

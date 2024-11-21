@@ -25,7 +25,7 @@ class UserDaoImplJsonTest {
 
     @Test
     void getUser() throws IOException {
-        System.out.println(userDaoImplJson.getUser("Alice", "25"));
+        System.out.println(userDaoImplJson.getUser("Alice"));
     }
 
 

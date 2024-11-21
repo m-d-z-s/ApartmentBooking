@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface UserDao<T> {
-    Boolean getUser(String user, String password) throws IOException;
+    User getUser(String user) throws IOException;
     List<T> getAll() throws IOException;
     void save(T user) throws IOException;
     void update(T user) throws IOException;

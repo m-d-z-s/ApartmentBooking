@@ -10,9 +10,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import me.mdzs.apartmentbooking.domain.User;
+import me.mdzs.apartmentbooking.identification.UserDaoImplDB;
 import me.mdzs.apartmentbooking.identification.UserDaoImplJson;
 
 import java.io.IOException;
+import java.util.List;
 
 public class LoginController {
     @FXML
@@ -25,8 +27,11 @@ public class LoginController {
     @FXML
     private PasswordField passwordField;
 
+    UserDaoImplJson userDao = new UserDaoImplJson();
+
     @FXML
     private void handleLogin() throws IOException {
+        status.setText("");
         String username = usernameField.getText().toLowerCase();
         String password = passwordField.getText();
 
@@ -36,11 +41,31 @@ public class LoginController {
         }
 
         // Инициализируем UserDaoImplJson и проверяем данные пользователя
-        UserDaoImplJson userDao = new UserDaoImplJson();
-        Boolean flag = userDao.getUser(username, password);
+//        UserDaoImplDB userDao = new UserDaoImplDB();
+        User user = userDao.getUser(username);
+        Boolean flag = checkIfUserExist(username, password);
 
         if (flag) {
             status.setText("Login successful");
+            // TODO: ""
+            //закрываем текущее окно
+            Stage stage1 = (Stage) signUp.getScene().getWindow();
+            stage1.close();
+            // Переход на новое окно
+            FXMLLoader fxmlLoader;
+            if (user.getIsAdmin()){
+                fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/adminView.fxml"));
+
+            }
+            else {
+                fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/userView.fxml"));
+            }
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Hotel Booking System. Registration");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
         } else {
             status.setText("Invalid username or password");
         }
@@ -58,5 +83,16 @@ public class LoginController {
         stage.setTitle("Hotel Booking System. Registration");
         stage.setScene(new Scene(root1));
         stage.show();
+    }
+
+
+    private Boolean checkIfUserExist(String userName, String password) throws IOException {
+        List<User> userList = userDao.getAll();
+        for (User user : userList) {
+            if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
+                return true; // Возвращаем пользователя, если имя и пароль совпадают
+            }
+        }
+        return false; // Если пользователь не найден или пароль неверный
     }
 }

@@ -15,24 +15,27 @@ public class UserDaoImplJson implements UserDao<User> {
 
     public UserDaoImplJson() {
     }
-    /**
-     * Получает пользователя по имени и паролю.
-     * Используется для авторизации.
-     *
-     * @param user     имя пользователя
-     * @param password пароль пользователя
-     * @return объект User, если пользователь найден и пароль совпадает, иначе null
-     */
+//    /**
+//     * Получает пользователя по имени и паролю.
+//     * Используется для авторизации.
+//     *
+//     * @param user     имя пользователя
+//     * @param password пароль пользователя
+//     * @return объект User, если пользователь найден и пароль совпадает, иначе null
+//     */
     @Override
-    public Boolean getUser(String user, String password) throws IOException {
+    public User getUser(String userName) throws IOException {
         List<User> userList = getAll();
-        for (User u : userList) {
-            if (u.getUserName().equals(user) && u.getPassword().equals(password)) {
-                return true; // Возвращаем пользователя, если имя и пароль совпадают
+        for (User user : userList) {
+            if (user.getUserName().equals(userName)) {
+                return user; // Возвращаем пользователя, если имя и пароль совпадают
             }
         }
-        return false; // Если пользователь не найден или пароль неверный
+        return null; // Если пользователь не найден или пароль неверный
     }
+
+
+
 
     @Override
     public List<User> getAll() throws IOException {
