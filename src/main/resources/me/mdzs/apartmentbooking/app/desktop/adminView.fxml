@@ -10,7 +10,18 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="me.mdzs.apartmentbooking.app.desktop.controllers.AdminController"
             prefHeight="400.0" prefWidth="600.0">
-    <TableView fx:id="roomsTable" layoutX="20.0" layoutY="20.0" prefHeight="400.0" prefWidth="600.0">
+
+    <!-- Контейнер для кнопок -->
+    <HBox spacing="10" layoutX="140.0" layoutY="10.0" prefHeight="40.0" prefWidth="560.0">
+        <Button text="Редактирование" fx:id="editButton" onAction="#handleEditButton"/>
+
+<!--        <Button text="Добавить номер" fx:id="addRoomButton" onAction="#handleAddRoom"/>-->
+<!--        <Button text="Отменить бронь" fx:id="cancelBookingButton" onAction="#handleCancelBooking"/>-->
+<!--        <Button text="Добавить бронь" fx:id="addBookingButton" onAction="#handleAddBooking"/>-->
+    </HBox>
+
+    <!-- Таблица с номерами -->
+    <TableView fx:id="roomsTable" layoutX="20.0" layoutY="60.0" prefHeight="320.0" prefWidth="560.0">
         <columns>
             <TableColumn fx:id="roomNumberColumn" text="Номер" prefWidth="100" />
             <TableColumn fx:id="guestsCountColumn" text="Количество гостей" prefWidth="150" />
@@ -20,5 +31,3 @@
     </TableView>
 
 </AnchorPane>
-
-

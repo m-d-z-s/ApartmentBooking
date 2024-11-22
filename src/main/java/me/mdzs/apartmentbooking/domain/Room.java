@@ -29,4 +29,14 @@ public class Room {
     public String getBookingDateTo() {
         return bookingDateTo;
     }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "roomNumber=" + roomNumber +
+                ", guestsCount=" + guestsCount +
+                ", dateFrom='" + bookingDateFrom + '\'' +
+                ", dateTo='" + bookingDateTo + '\'' +
+                '}';
+    }
 }

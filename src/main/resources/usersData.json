@@ -18,5 +18,10 @@
     "userName": "irina",
     "password": "111",
     "isAdmin": true
+  },
+  {
+    "userName": "ggg",
+    "password": "0",
+    "isAdmin": false
   }
 ]
