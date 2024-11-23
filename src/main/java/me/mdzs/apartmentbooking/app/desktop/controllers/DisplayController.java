@@ -6,10 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import me.mdzs.apartmentbooking.domain.Room;
 import javafx.scene.input.MouseEvent;
@@ -58,13 +57,52 @@ public class DisplayController {
     }
 
     private void handleRowClick(MouseEvent event) {
-        if (event.getClickCount() == 2) { // Обработка двойного клика
+        if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
             Room selectedRoom = roomsTable.getSelectionModel().getSelectedItem();
             if (selectedRoom != null) {
-                System.out.println("Редактируем номер: " + selectedRoom);
                 openEditDialog(selectedRoom);
             }
+        } else if (event.getButton() == MouseButton.SECONDARY) {
+            Room selectedRoom = roomsTable.getSelectionModel().getSelectedItem();
+            if (selectedRoom != null) {
+                showContextMenu(event, selectedRoom);
+            }
         }
+    }
+
+    private void showContextMenu(MouseEvent event, Room selectedRoom) {
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem deleteItem = new MenuItem("Удалить бронь");
+        deleteItem.setOnAction(e -> confirmAndDelete(selectedRoom));
+        contextMenu.getItems().add(deleteItem);
+
+        contextMenu.show(roomsTable, event.getScreenX(), event.getScreenY());
+    }
+
+    private void confirmAndDelete(Room room) {
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Подтверждение удаления");
+        confirmationAlert.setHeaderText("Вы уверены, что хотите отменить бронь?");
+        confirmationAlert.setContentText("Номер: " + room.getRoomNumber());
+
+        confirmationAlert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try { // Удаляем из таблицы
+                    List<Room> list = JsonUtilsForBooking.readJsonToList("src/main/resources/bookingList.json");
+                    list.remove(room);
+                    JsonUtilsForBooking.writeListToJson(list,"src/main/resources/bookingList.json");
+                } catch (IOException e) {
+                    showError("Ошибка сохранения данных", "Не удалось обновить файл с бронями.");
+                }
+            }
+        });
+    }
+    private void showError(String title, String content) {
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setTitle(title);
+        errorAlert.setHeaderText(null);
+        errorAlert.setContentText(content);
+        errorAlert.showAndWait();
     }
 
     private void openEditDialog(Room room) {
