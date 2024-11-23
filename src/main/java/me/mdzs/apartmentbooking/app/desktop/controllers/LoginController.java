@@ -10,7 +10,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import me.mdzs.apartmentbooking.domain.User;
-import me.mdzs.apartmentbooking.identification.UserDaoImplDB;
 import me.mdzs.apartmentbooking.identification.UserDaoImplJson;
 
 import java.io.IOException;
@@ -54,7 +53,7 @@ public class LoginController {
             // Переход на новое окно
             FXMLLoader fxmlLoader;
             if (user.getIsAdmin()){
-                fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/adminView.fxml"));
+                fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/AdminView.fxml"));
 
             }
             else {

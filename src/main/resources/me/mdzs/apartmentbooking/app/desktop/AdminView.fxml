@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="me.mdzs.apartmentbooking.app.desktop.controllers.AdminController"
+            prefHeight="400.0" prefWidth="600.0">
+    <!-- Контейнер для кнопок -->
+    <HBox spacing="10" layoutX="140.0" layoutY="10.0" prefHeight="40.0" prefWidth="560.0">
+        <Button text="Отображение" fx:id="displayBookingButton" onAction="#handleDisplayBooking"/>
+        <Button text="Добавить номер" fx:id="addRoomButton" onAction="#handleAddRoom"/>
+        <Button text="Добавить бронь" fx:id="addBookingButton" onAction="#handleAddBooking"/>
+    </HBox>
+
+</AnchorPane>

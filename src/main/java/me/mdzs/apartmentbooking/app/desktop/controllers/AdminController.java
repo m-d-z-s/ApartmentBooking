@@ -1,78 +1,39 @@
 package me.mdzs.apartmentbooking.app.desktop.controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import me.mdzs.apartmentbooking.domain.Room;
-import javafx.scene.input.MouseEvent;
-import me.mdzs.apartmentbooking.utils.JsonUtilsForRooms;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class AdminController {
-    @FXML
-    private TableView<Room> roomsTable;
 
-    @FXML
-    private TableColumn<Room, Integer> roomNumberColumn;
+    public Button displayBookingButton;
+    public Button addRoomButton;
+    public Button addBookingButton;
 
-    @FXML
-    private TableColumn<Room, Integer> guestsCountColumn;
-
-    @FXML
-    private TableColumn<Room, String> dateColumnFrom;
-
-    @FXML
-    private TableColumn<Room, String> dateColumnTo;
-    @FXML
-    public Button editButton;
-
-    @FXML
-    public void initialize() throws IOException {
-        // Настраиваем колонки таблицы
-        roomNumberColumn.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
-        guestsCountColumn.setCellValueFactory(new PropertyValueFactory<>("guestsCount"));
-        dateColumnFrom.setCellValueFactory(new PropertyValueFactory<>("bookingDateFrom"));
-        dateColumnTo.setCellValueFactory(new PropertyValueFactory<>("bookingDateTo"));
-
-        // Пример данных для таблицы
-        roomsTable.setItems(getRoomData());
-
-        // Слушатель нажатий на строки таблицы
-        roomsTable.setOnMouseClicked(this::handleRowClick);
+    public void handleDisplayBooking(ActionEvent actionEvent) throws IOException {
+        //закрываем текущее окно
+        Stage stage1 = (Stage) displayBookingButton.getScene().getWindow();
+        stage1.close();
+        // Переход на окно регистрации
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/DisplayView.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Hotel Booking System. Login");
+        stage.setScene(new Scene(root1));
+        stage.show();
     }
 
-    private ObservableList<Room> getRoomData() throws IOException {
-//        JsonUtilsForRooms.readJsonToList("src/main/resources/bookingList.json");
-        return null;
-//        return javafx.collections.FXCollections.observableArrayList(
-//                new Room(101, 2, "2024-11-25", "2024-11-28"),
-//                new Room(102, 3, "2024-11-20", "2024-11-23")
-//        );
-    }
+    public void handleAddRoom(ActionEvent actionEvent) {
 
-    private void handleRowClick(MouseEvent event) {
-        if (event.getClickCount() == 2) { // Обработка двойного клика
-            Room selectedRoom = roomsTable.getSelectionModel().getSelectedItem();
-            if (selectedRoom != null) {
-                System.out.println("Редактируем номер: " + selectedRoom);
-                openEditDialog(selectedRoom);
-            }
-        }
-    }
-
-    private void openEditDialog(Room room) {
-        // Откройте новое окно или модальное диалоговое окно для редактирования данных
-        System.out.println("Открытие окна редактирования для: " + room);
-        // Здесь можно подключить форму редактирования и передать данные выбранной записи
     }
 
 
-    public void handleEditButton(ActionEvent actionEvent) {
+    public void handleAddBooking(ActionEvent actionEvent) {
+
     }
 }

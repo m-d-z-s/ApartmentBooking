@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class JsonUtilsTest {
+class JsonUtilsForUsersTest {
 
     private static final String FILE_PATH = "src/main/resources/usersData.json";
 
@@ -38,7 +38,7 @@ class JsonUtilsTest {
     void test_writeListToJson() throws IOException {
         List<User> users = Arrays.asList(user1, user2);
 
-        JsonUtils.writeListToJson(users, FILE_PATH);
+        JsonUtilsForUsers.writeListToJson(users, FILE_PATH);
 
         String content = Files.readString(new File(FILE_PATH).toPath());
         assertTrue(content.contains("\"userName\":\"Alice\""));
@@ -54,7 +54,7 @@ class JsonUtilsTest {
     void test_readJsonToList() throws IOException {
         List<User> testUsers = Arrays.asList(user1, user2);
 
-        List<User> realUsers = JsonUtils.readJsonToList(FILE_PATH);
+        List<User> realUsers = JsonUtilsForUsers.readJsonToList(FILE_PATH);
 
         assertEquals(testUsers, realUsers);
     }
@@ -64,7 +64,7 @@ class JsonUtilsTest {
     void test_writeSingleUserListToJson() throws IOException {
         List<User> users = List.of(user1);
 
-        JsonUtils.writeListToJson(users, FILE_PATH);
+        JsonUtilsForUsers.writeListToJson(users, FILE_PATH);
 
         String content = Files.readString(new File(FILE_PATH).toPath());
         assertTrue(content.contains("\"userName\":\"Alice\""));
@@ -77,7 +77,7 @@ class JsonUtilsTest {
     void test_readSingleUserJsonToList() throws IOException {
         List<User> testUsers = List.of(user1);
 
-        List<User> realUsers = JsonUtils.readJsonToList(FILE_PATH);
+        List<User> realUsers = JsonUtilsForUsers.readJsonToList(FILE_PATH);
 
         assertEquals(testUsers, realUsers);
     }

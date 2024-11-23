@@ -2,7 +2,6 @@ package me.mdzs.apartmentbooking.identification;
 
 import me.mdzs.apartmentbooking.domain.User;
 import me.mdzs.apartmentbooking.utils.DBUtils;
-import me.mdzs.apartmentbooking.utils.JsonUtils;
 
 import java.util.List;
 import java.util.Objects;

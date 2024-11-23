@@ -1,9 +1,8 @@
 package me.mdzs.apartmentbooking.identification;
 
 import me.mdzs.apartmentbooking.domain.User;
-import me.mdzs.apartmentbooking.utils.JsonUtils;
+import me.mdzs.apartmentbooking.utils.JsonUtilsForUsers;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
@@ -39,7 +38,7 @@ public class UserDaoImplJson implements UserDao<User> {
 
     @Override
     public List<User> getAll() throws IOException {
-        return JsonUtils.readJsonToList(PATH);
+        return JsonUtilsForUsers.readJsonToList(PATH);
     }
 
     @Override
@@ -47,7 +46,7 @@ public class UserDaoImplJson implements UserDao<User> {
         List<User> userList = getAll();
         userList.removeIf(user1 -> user1.equals(user));
 
-        JsonUtils.writeListToJson(userList, PATH);
+        JsonUtilsForUsers.writeListToJson(userList, PATH);
     }
 
     /**
@@ -64,7 +63,7 @@ public class UserDaoImplJson implements UserDao<User> {
                 break;
             }
         }
-        JsonUtils.writeListToJson(userList, PATH);
+        JsonUtilsForUsers.writeListToJson(userList, PATH);
     }
 
     /**
@@ -86,7 +85,7 @@ public class UserDaoImplJson implements UserDao<User> {
         }
         if(flag){
             userList.add(user);
-            JsonUtils.writeListToJson(userList, PATH);
+            JsonUtilsForUsers.writeListToJson(userList, PATH);
         }
 
     }
