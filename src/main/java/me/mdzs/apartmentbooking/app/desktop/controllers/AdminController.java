@@ -23,17 +23,35 @@ public class AdminController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/DisplayView.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
+        stage.setTitle("Hotel Booking System. Display list");
+        stage.setScene(new Scene(root1));
+        stage.show();
+    }
+
+    public void handleAddRoom(ActionEvent actionEvent) throws IOException {
+        //закрываем текущее окно
+        Stage stage1 = (Stage) addRoomButton.getScene().getWindow();
+        stage1.close();
+        // Переход на окно регистрации
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(""));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
         stage.setTitle("Hotel Booking System. Login");
         stage.setScene(new Scene(root1));
         stage.show();
     }
 
-    public void handleAddRoom(ActionEvent actionEvent) {
 
-    }
-
-
-    public void handleAddBooking(ActionEvent actionEvent) {
-
+    public void handleAddBooking(ActionEvent actionEvent) throws IOException {
+        //закрываем текущее окно
+        Stage stage1 = (Stage) addBookingButton.getScene().getWindow();
+        stage1.close();
+        // Переход на окно регистрации
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/AddBookingView.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Hotel Booking System. Login");
+        stage.setScene(new Scene(root1));
+        stage.show();
     }
 }

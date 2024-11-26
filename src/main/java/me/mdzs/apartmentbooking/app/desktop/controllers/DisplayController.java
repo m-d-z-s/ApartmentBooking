@@ -33,8 +33,6 @@ public class DisplayController {
 
     @FXML
     private TableColumn<Room, String> dateColumnTo;
-    @FXML
-    public Button editButton;
 
     @FXML
     public void initialize() throws IOException {
@@ -52,7 +50,7 @@ public class DisplayController {
     }
 
     private ObservableList<Room> getRoomData() throws IOException {
-        List<Room> list =  JsonUtilsForBooking.readJsonToList("src/main/resources/bookingList.json");
+        List<Room> list =  JsonUtilsForBooking.readJsonToList();
         return (ObservableList<Room>) list;
     }
 
@@ -88,9 +86,9 @@ public class DisplayController {
         confirmationAlert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 try { // Удаляем из таблицы
-                    List<Room> list = JsonUtilsForBooking.readJsonToList("src/main/resources/bookingList.json");
+                    List<Room> list = JsonUtilsForBooking.readJsonToList();
                     list.remove(room);
-                    JsonUtilsForBooking.writeListToJson(list,"src/main/resources/bookingList.json");
+                    JsonUtilsForBooking.writeListToJson(list);
                 } catch (IOException e) {
                     showError("Ошибка сохранения данных", "Не удалось обновить файл с бронями.");
                 }
@@ -111,10 +109,10 @@ public class DisplayController {
         // Здесь можно подключить форму редактирования и передать данные выбранной записи
     }
 
-
+    @FXML
     public void handleBackButton(ActionEvent actionEvent) throws IOException {
         //закрываем текущее окно
-        Stage stage1 = (Stage) editButton.getScene().getWindow();
+        Stage stage1 = (Stage) backButton.getScene().getWindow();
         stage1.close();
         // Переход на окно регистрации
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/AdminView.fxml"));
