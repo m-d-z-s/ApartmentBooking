@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import me.mdzs.apartmentbooking.Pathes;
 import me.mdzs.apartmentbooking.domain.User;
 import me.mdzs.apartmentbooking.identification.UserDaoImplJson;
 
@@ -53,11 +54,11 @@ public class LoginController {
             // Переход на новое окно
             FXMLLoader fxmlLoader;
             if (user.getIsAdmin()){
-                fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/AdminView.fxml"));
+                fxmlLoader = new FXMLLoader(getClass().getResource(Pathes.PATH_TO_DESKTOP_ADMIN_VIEW));
 
             }
             else {
-                fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/userView.fxml"));
+                fxmlLoader = new FXMLLoader(getClass().getResource(Pathes.PATH_TO_DESKTOP_USER_VIEW));
             }
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -76,7 +77,7 @@ public class LoginController {
         Stage stage1 = (Stage) signUp.getScene().getWindow();
         stage1.close();
         // Переход на окно регистрации
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/RegistrationView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Pathes.PATH_TO_DESKTOP_REGISTRATION_VIEW));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle("Hotel Booking System. Registration");

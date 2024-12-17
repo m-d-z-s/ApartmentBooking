@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
+import me.mdzs.apartmentbooking.Pathes;
 import me.mdzs.apartmentbooking.domain.Booking;
 import javafx.scene.input.MouseEvent;
 import me.mdzs.apartmentbooking.domain.Room;
@@ -123,7 +124,7 @@ public class DisplayController {
         Stage stage1 = (Stage) backButton.getScene().getWindow();
         stage1.close();
         // Переход на окно регистрации
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/AdminView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Pathes.PATH_TO_DESKTOP_ADMIN_VIEW));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle("Hotel Booking System. Login");

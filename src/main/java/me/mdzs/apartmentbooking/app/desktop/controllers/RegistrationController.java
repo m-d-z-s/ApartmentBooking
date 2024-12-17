@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.mdzs.apartmentbooking.Pathes;
 import me.mdzs.apartmentbooking.identification.UserDaoImplDB;
 import me.mdzs.apartmentbooking.identification.UserDaoImplJson;
 import me.mdzs.apartmentbooking.domain.User;
@@ -71,7 +72,7 @@ public class RegistrationController {
         Stage stage1 = (Stage) signIn.getScene().getWindow();
         stage1.close();
         // Переход на окно регистрации
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/LoginView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Pathes.PATH_TO_DESKTOP_LOGIN_VIEW));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle("Hotel Booking System. Login");

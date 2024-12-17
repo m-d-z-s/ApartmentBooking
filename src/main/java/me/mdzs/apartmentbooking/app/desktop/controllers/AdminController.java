@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import me.mdzs.apartmentbooking.Pathes;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,7 +22,7 @@ public class AdminController {
         Stage stage1 = (Stage) displayBookingButton.getScene().getWindow();
         stage1.close();
         // Переход на окно регистрации
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/DisplayView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Pathes.PATH_TO_DESKTOP_DISPLAY_VIEW));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle("Hotel Booking System. Display list");
@@ -34,7 +35,7 @@ public class AdminController {
         Stage stage1 = (Stage) addRoomButton.getScene().getWindow();
         stage1.close();
         // Переход на окно регистрации
-        URL location = getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/AddRoomView.fxml");
+        URL location = getClass().getResource(Pathes.PATH_TO_DESKTOP_ADD_ROOM_VIEW);
         if (location == null) {
             System.err.println("location is null!!!");
         }
@@ -52,7 +53,7 @@ public class AdminController {
         Stage stage1 = (Stage) addBookingButton.getScene().getWindow();
         stage1.close();
         // Переход на окно регистрации
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/AddBookingView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Pathes.PATH_TO_DESKTOP_ADD_BOOKING_VIEW));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle("Hotel Booking System. Login");

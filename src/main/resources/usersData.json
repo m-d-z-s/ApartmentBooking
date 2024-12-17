@@ -28,5 +28,10 @@
     "userName": "olya",
     "password": "qwerty",
     "isAdmin": false
+  },
+  {
+    "userName": "ffdf",
+    "password": "werqwe",
+    "isAdmin": false
   }
 ]
