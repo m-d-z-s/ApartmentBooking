@@ -8,5 +8,6 @@ public class Pathes {
     public final static String PATH_TO_DESKTOP_USER_VIEW = "/me/mdzs/apartmentbooking/app/desktop/userView.fxml";
     public final static String PATH_TO_DESKTOP_REGISTRATION_VIEW = "/me/mdzs/apartmentbooking/app/desktop/RegistrationView.fxml";
     public final static String PATH_TO_DESKTOP_LOGIN_VIEW = "/me/mdzs/apartmentbooking/app/desktop/LoginView.fxml";
+    public final static String PATH_TO_DESKTOP_PROFILE_VIEW = "/me/mdzs/apartmentbooking/app/desktop/ProfileView.fxml";
 
 }
