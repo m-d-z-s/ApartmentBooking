@@ -25,13 +25,13 @@ module apartmentbooking {
 
 
 
-    opens me.mdzs.apartmentbooking.app.spring to spring.core, spring.beans;
-    exports me.mdzs.apartmentbooking.app.spring;
-
-    opens me.mdzs.apartmentbooking.app.spring.service to spring.core, spring.beans;
-    exports me.mdzs.apartmentbooking.app.spring.service;
-
-    opens me.mdzs.apartmentbooking.app.spring.controller to spring.core, spring.beans;
-    exports me.mdzs.apartmentbooking.app.spring.controller;
+//    opens me.mdzs.apartmentbooking.app.spring to spring.core, spring.beans;
+//    exports me.mdzs.apartmentbooking.app.spring;
+//
+//    opens me.mdzs.apartmentbooking.app.spring.service to spring.core, spring.beans;
+//    exports me.mdzs.apartmentbooking.app.spring.service;
+//
+//    opens me.mdzs.apartmentbooking.app.spring.controller to spring.core, spring.beans;
+//    exports me.mdzs.apartmentbooking.app.spring.controller;
 
 }

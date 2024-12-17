@@ -53,9 +53,7 @@ public class LoginController {
             // Переход на новое окно
             FXMLLoader fxmlLoader;
             if (user.getIsAdmin()){
-//                fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/AdminView.fxml"));
-                fxmlLoader = new FXMLLoader(getClass().getResource("me/mdzs/apartmentbooking/app/desktop/AddRoomView.fxml"));
-//                fxmlLoader = new FXMLLoader(getClass().getResource("me/mdzs/apartmentbooking/app/desktop/AddBookingView.fxml"));
+                fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/AdminView.fxml"));
 
             }
             else {

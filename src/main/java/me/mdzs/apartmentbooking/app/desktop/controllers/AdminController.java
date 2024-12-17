@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class AdminController {
 
@@ -20,7 +21,7 @@ public class AdminController {
         Stage stage1 = (Stage) displayBookingButton.getScene().getWindow();
         stage1.close();
         // Переход на окно регистрации
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("me/mdzs/apartmentbooking/app/desktop/DisplayView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/DisplayView.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle("Hotel Booking System. Display list");
@@ -33,7 +34,11 @@ public class AdminController {
         Stage stage1 = (Stage) addRoomButton.getScene().getWindow();
         stage1.close();
         // Переход на окно регистрации
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("me/mdzs/apartmentbooking/app/desktop/AddRoomView.fxml"));
+        URL location = getClass().getResource("/me/mdzs/apartmentbooking/app/desktop/AddRoomView.fxml");
+        if (location == null) {
+            System.err.println("location is null!!!");
+        }
+        FXMLLoader fxmlLoader = new FXMLLoader(location);
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle("Hotel Booking System. Login");
