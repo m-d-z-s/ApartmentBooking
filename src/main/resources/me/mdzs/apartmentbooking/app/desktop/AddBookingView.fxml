@@ -16,7 +16,7 @@
             <!-- Поле для ввода номера комнаты -->
             <HBox spacing="10.0" alignment="CENTER_LEFT">
                 <Label text="Room Number:" />
-                <ComboBox fx:id="roomNumberComboBox" promptText="Select room" />
+                <ComboBox fx:id="BookingNumberComboBox" promptText="Select booking" />
             </HBox>
 
             <!-- Поле для ввода количества гостей -->
@@ -40,6 +40,8 @@
             <!-- Кнопка "Добавить бронирование" -->
             <Button text="Add Booking" fx:id="addBookingButton"
                     onAction="#handleAddBooking" />
+            <Button text="Back" fx:id="backButton"
+                    onAction="#handleBackButton" />
         </VBox>
     </children>
 </AnchorPane>

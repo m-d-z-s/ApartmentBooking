@@ -13,7 +13,7 @@
 
     <!-- Контейнер для кнопок -->
     <HBox spacing="10" layoutX="140.0" layoutY="10.0" prefHeight="40.0" prefWidth="560.0">
-        <Button text="Назад" fx:id="backButton" onAction="#handleBackButton"/>
+        <Button text="Back" fx:id="backButton" onAction="#handleBackButton"/>
 
 <!--        <Button text="Добавить номер" fx:id="addRoomButton" onAction="#handleAddRoom"/>-->
 <!--        <Button text="Отменить бронь" fx:id="cancelBookingButton" onAction="#handleCancelBooking"/>-->

@@ -1,5 +1,6 @@
 package me.mdzs.apartmentbooking.app.desktop.controllers;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,8 +11,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
-import me.mdzs.apartmentbooking.domain.Room;
+import me.mdzs.apartmentbooking.domain.Booking;
 import javafx.scene.input.MouseEvent;
+import me.mdzs.apartmentbooking.domain.Room;
+import me.mdzs.apartmentbooking.identification.UserDaoImplJson;
 import me.mdzs.apartmentbooking.utils.JsonUtilsForBooking;
 
 import java.io.IOException;
@@ -20,19 +23,20 @@ import java.util.List;
 public class DisplayController {
     public Button backButton;
     @FXML
-    private TableView<Room> roomsTable;
+    private TableView<Booking> roomsTable;
 
     @FXML
-    private TableColumn<Room, Integer> roomNumberColumn;
+    private TableColumn<Booking, Room> roomNumberColumn;
 
     @FXML
-    private TableColumn<Room, Integer> guestsCountColumn;
+    private TableColumn<Booking, Integer> guestsCountColumn;
 
     @FXML
-    private TableColumn<Room, String> dateColumnFrom;
+    private TableColumn<Booking, String> dateColumnFrom;
 
     @FXML
-    private TableColumn<Room, String> dateColumnTo;
+    private TableColumn<Booking, String> dateColumnTo;
+    private final UserDaoImplJson userdao = new UserDaoImplJson();
 
     @FXML
     public void initialize() throws IOException {
@@ -49,46 +53,50 @@ public class DisplayController {
         roomsTable.setOnMouseClicked(this::handleRowClick);
     }
 
-    private ObservableList<Room> getRoomData() throws IOException {
-        List<Room> list =  JsonUtilsForBooking.readJsonToList();
-        return (ObservableList<Room>) list;
+    private ObservableList<Booking> getRoomData() throws IOException {
+        List<Booking> list =  JsonUtilsForBooking.readJsonToList();
+        return FXCollections.observableArrayList(list); // Конвертация List в ObservableList
     }
 
     private void handleRowClick(MouseEvent event) {
         if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
-            Room selectedRoom = roomsTable.getSelectionModel().getSelectedItem();
-            if (selectedRoom != null) {
-                openEditDialog(selectedRoom);
+            Booking selectedBooking = roomsTable.getSelectionModel().getSelectedItem();
+            if (selectedBooking != null) {
+                openEditDialog(selectedBooking);
             }
         } else if (event.getButton() == MouseButton.SECONDARY) {
-            Room selectedRoom = roomsTable.getSelectionModel().getSelectedItem();
-            if (selectedRoom != null) {
-                showContextMenu(event, selectedRoom);
+            Booking selectedBooking = roomsTable.getSelectionModel().getSelectedItem();
+            if (selectedBooking != null) {
+                showContextMenu(event, selectedBooking);
             }
         }
     }
 
-    private void showContextMenu(MouseEvent event, Room selectedRoom) {
+    private void showContextMenu(MouseEvent event, Booking selectedBooking) {
         ContextMenu contextMenu = new ContextMenu();
         MenuItem deleteItem = new MenuItem("Удалить бронь");
-        deleteItem.setOnAction(e -> confirmAndDelete(selectedRoom));
+        deleteItem.setOnAction(e -> confirmAndDelete(selectedBooking));
         contextMenu.getItems().add(deleteItem);
-
         contextMenu.show(roomsTable, event.getScreenX(), event.getScreenY());
     }
 
-    private void confirmAndDelete(Room room) {
+    private void confirmAndDelete(Booking booking) {
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmationAlert.setTitle("Подтверждение удаления");
         confirmationAlert.setHeaderText("Вы уверены, что хотите отменить бронь?");
-        confirmationAlert.setContentText("Номер: " + room.getRoomNumber());
+        confirmationAlert.setContentText("Номер: " + booking.getRoomNumber());
 
         confirmationAlert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 try { // Удаляем из таблицы
-                    List<Room> list = JsonUtilsForBooking.readJsonToList();
-                    list.remove(room);
+                    List<Booking> list = JsonUtilsForBooking.readJsonToList();
+                    System.out.println(list);
+                    System.out.println(booking);
+                    list.remove(booking);
+//                    list.removeIf(roomi -> roomi.equals(room));
+                    System.out.println(list);
                     JsonUtilsForBooking.writeListToJson(list);
+                    initialize();
                 } catch (IOException e) {
                     showError("Ошибка сохранения данных", "Не удалось обновить файл с бронями.");
                 }
@@ -103,9 +111,9 @@ public class DisplayController {
         errorAlert.showAndWait();
     }
 
-    private void openEditDialog(Room room) {
+    private void openEditDialog(Booking booking) {
         // Откройте новое окно или модальное диалоговое окно для редактирования данных
-        System.out.println("Открытие окна редактирования для: " + room);
+        System.out.println("Открытие окна редактирования для: " + booking);
         // Здесь можно подключить форму редактирования и передать данные выбранной записи
     }
 

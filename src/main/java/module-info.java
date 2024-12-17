@@ -1,9 +1,9 @@
 module apartmentbooking {
     requires spring.boot;
+    requires spring.beans;
     requires spring.boot.autoconfigure;
     requires spring.context;
     requires spring.core;
-    requires spring.beans;
     requires spring.web;
     requires javafx.controls;
     requires javafx.fxml;
@@ -22,4 +22,16 @@ module apartmentbooking {
 
     opens me.mdzs.apartmentbooking.domain to javafx.fxml, com.google.gson;
     exports me.mdzs.apartmentbooking.domain;
+
+
+
+    opens me.mdzs.apartmentbooking.app.spring to spring.core, spring.beans;
+    exports me.mdzs.apartmentbooking.app.spring;
+
+    opens me.mdzs.apartmentbooking.app.spring.service to spring.core, spring.beans;
+    exports me.mdzs.apartmentbooking.app.spring.service;
+
+    opens me.mdzs.apartmentbooking.app.spring.controller to spring.core, spring.beans;
+    exports me.mdzs.apartmentbooking.app.spring.controller;
+
 }

@@ -1,41 +1,29 @@
 package me.mdzs.apartmentbooking.domain;
 
+import java.util.Objects;
+
 public class Room {
     private final int roomNumber;
-    private final int guestsCount;
-    private final String bookingDateFrom;
-    private final String bookingDateTo;
 
-    public Room(int roomNumber, int guestsCount, String bookingDateFrom, String bookingDateTo) {
+    public Room(int roomNumber) {
         this.roomNumber = roomNumber;
-        this.guestsCount = guestsCount;
-        this.bookingDateFrom = bookingDateFrom;
-        this.bookingDateTo = bookingDateTo;
     }
 
     public int getRoomNumber() {
         return roomNumber;
     }
 
-    public int getGuestsCount() {
-        return guestsCount;
-    }
-
-    public String getBookingDateFrom() {
-        return bookingDateFrom;
-    }
-
-    public String getBookingDateTo() {
-        return bookingDateTo;
-    }
-
     @Override
     public String toString() {
         return "Room{" +
                 "roomNumber=" + roomNumber +
-                ", guestsCount=" + guestsCount +
-                ", dateFrom='" + bookingDateFrom + '\'' +
-                ", dateTo='" + bookingDateTo + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Room)) return false;
+        Room newRoom = (Room) o;
+        return (Objects.equals(this.roomNumber, newRoom.roomNumber));
     }
 }

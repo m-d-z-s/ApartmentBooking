@@ -1,10 +1,5 @@
 [
   {
-    "userName": "Ira",
-    "password": "321",
-    "isAdmin": false
-  },
-  {
     "userName": "john",
     "password": "5522",
     "isAdmin": false
@@ -27,6 +22,11 @@
   {
     "userName": "abc",
     "password": "abc",
+    "isAdmin": false
+  },
+  {
+    "userName": "olya",
+    "password": "qwerty",
     "isAdmin": false
   }
 ]

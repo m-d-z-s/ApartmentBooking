@@ -14,6 +14,7 @@ class UserDaoImplJsonTest {
     private final User user1 = new User("Alice", "25", false);
     private final User user2 = new User("Bob", "0121", true);
     private final User user3 = new User("Ira", "5421fhx3", false);
+    private final User user4 = new User("Ira", "321", false);
 
     @Test
     void getAll() throws IOException {
@@ -31,7 +32,7 @@ class UserDaoImplJsonTest {
 
     @Test
     void delete() throws IOException {
-        userDaoImplJson.delete(user1);
+        userDaoImplJson.delete(user3);
         getAll();
     }
 
