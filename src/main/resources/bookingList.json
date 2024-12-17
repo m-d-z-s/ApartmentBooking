@@ -1,10 +1,20 @@
 [
   {
+    "userName": "Admin",
     "roomNumber": {
-      "roomNumber": 103
+      "roomNumber": 102
+    },
+    "guestsCount": 1,
+    "bookingDateFrom": "2024-12-11",
+    "bookingDateTo": "2024-12-19"
+  },
+  {
+    "userName": "sss",
+    "roomNumber": {
+      "roomNumber": 102
     },
     "guestsCount": 3,
-    "bookingDateFrom": "2024-12-19",
-    "bookingDateTo": "2024-12-26"
+    "bookingDateFrom": "2024-12-18",
+    "bookingDateTo": "2024-12-25"
   }
 ]

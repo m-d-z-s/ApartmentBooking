@@ -9,5 +9,6 @@ public class Pathes {
     public final static String PATH_TO_DESKTOP_REGISTRATION_VIEW = "/me/mdzs/apartmentbooking/app/desktop/RegistrationView.fxml";
     public final static String PATH_TO_DESKTOP_LOGIN_VIEW = "/me/mdzs/apartmentbooking/app/desktop/LoginView.fxml";
     public final static String PATH_TO_DESKTOP_PROFILE_VIEW = "/me/mdzs/apartmentbooking/app/desktop/ProfileView.fxml";
-
+    public final static String PATH_TO_DESKTOP_USER_ADD_BOOKING_VIEW = "/me/mdzs/apartmentbooking/app/desktop/UserAddBookingView.fxml";
+    public final static String PATH_TO_DESKTOP_USER_DISPLAY_VIEW = "/me/mdzs/apartmentbooking/app/desktop/UserDisplayView.fxml";
 }

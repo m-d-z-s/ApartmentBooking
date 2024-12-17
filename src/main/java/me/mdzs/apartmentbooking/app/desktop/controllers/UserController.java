@@ -1,6 +1,7 @@
 package me.mdzs.apartmentbooking.app.desktop.controllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,6 +13,16 @@ import java.io.IOException;
 
 public class UserController {
     public Button Profile;
+    public Button displayBookingButton;
+    public Button addBookingButton;
+
+    public String userName;
+
+    private String GetTitle() throws IOException{
+        Stage stage1 = (Stage) Profile.getScene().getWindow();
+        userName = stage1.getTitle();
+        return userName;
+    }
 
     public void handleProfile(ActionEvent actionEvent) throws IOException {
         //закрываем текущее окно
@@ -21,7 +32,31 @@ public class UserController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Pathes.PATH_TO_DESKTOP_PROFILE_VIEW));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
-        stage.setTitle("Hotel Booking System. Profile");
+        stage.setTitle(GetTitle());
+        stage.setScene(new Scene(root1));
+        stage.show();
+    }
+
+    public void handleDisplayBooking(ActionEvent actionEvent) throws IOException {
+        Stage stage1 = (Stage) Profile.getScene().getWindow();
+        stage1.close();
+        // Переход на окно регистрации
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Pathes.PATH_TO_DESKTOP_USER_DISPLAY_VIEW));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle(GetTitle());
+        stage.setScene(new Scene(root1));
+        stage.show();
+    }
+
+    public void handleAddBooking(ActionEvent actionEvent) throws IOException {
+        Stage stage1 = (Stage) Profile.getScene().getWindow();
+        stage1.close();
+        // Переход на окно регистрации
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Pathes.PATH_TO_DESKTOP_USER_ADD_BOOKING_VIEW));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle(GetTitle());
         stage.setScene(new Scene(root1));
         stage.show();
     }

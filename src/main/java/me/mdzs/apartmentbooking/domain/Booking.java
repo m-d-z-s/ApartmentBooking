@@ -3,16 +3,23 @@ package me.mdzs.apartmentbooking.domain;
 import java.util.Objects;
 
 public class Booking {
+
+
+    private final String userName;
     private final Room roomNumber;
     private final int guestsCount;
     private final String bookingDateFrom;
     private final String bookingDateTo;
 
-    public Booking(Room roomNumber, int guestsCount, String bookingDateFrom, String bookingDateTo) {
+    public Booking(String userName, Room roomNumber, int guestsCount, String bookingDateFrom, String bookingDateTo) {
+        this.userName = userName;
         this.roomNumber = roomNumber;
         this.guestsCount = guestsCount;
         this.bookingDateFrom = bookingDateFrom;
         this.bookingDateTo = bookingDateTo;
+    }
+    public String getUserName() {
+        return userName;
     }
 
     public Room getRoomNumber() {
@@ -34,7 +41,8 @@ public class Booking {
     @Override
     public String toString() {
         return "Room{" +
-                "roomNumber=" + roomNumber +
+                "userName=" + userName +
+                ", " + roomNumber +
                 ", guestsCount=" + guestsCount +
                 ", dateFrom='" + bookingDateFrom + '\'' +
                 ", dateTo='" + bookingDateTo + '\'' +

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="me.mdzs.apartmentbooking.app.desktop.controllers.UserAddBookingController"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <VBox spacing="10.0" alignment="TOP_CENTER" layoutX="50.0" layoutY="50.0" prefWidth="500.0">
+            <!-- Поле для ввода номера комнаты -->
+            <HBox spacing="10.0" alignment="CENTER_LEFT">
+                <Label text="Room Number:" />
+                <ComboBox fx:id="roomNumberComboBox" promptText="Select booking" />
+            </HBox>
+
+            <!-- Поле для ввода количества гостей -->
+            <HBox spacing="10.0" alignment="CENTER_LEFT">
+                <Label text="Guests Count:" />
+                <Spinner fx:id="guestsCountField" promptText="Enter guests count" initialValue="1" max="4" min="1" />
+            </HBox>
+
+            <!-- Поле для ввода даты начала бронирования -->
+            <HBox spacing="10.0" alignment="CENTER_LEFT">
+                <Label text="Booking From:" />
+                <DatePicker fx:id="bookingDateFromPicker" />
+            </HBox>
+
+            <!-- Поле для ввода даты окончания бронирования -->
+            <HBox spacing="10.0" alignment="CENTER_LEFT">
+                <Label text="Booking To:" />
+                <DatePicker fx:id="bookingDateToPicker"  />
+            </HBox>
+
+            <!-- Кнопка "Добавить бронирование" -->
+            <Button text="Add Booking" fx:id="addBookingButton"
+                    onAction="#handleAddBooking" />
+            <Button text="Back" fx:id="backButton"
+                    onAction="#handleBackButton" />
+        </VBox>
+    </children>
+
+</AnchorPane>

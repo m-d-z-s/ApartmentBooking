@@ -55,16 +55,22 @@ public class LoginController {
             FXMLLoader fxmlLoader;
             if (user.getIsAdmin()){
                 fxmlLoader = new FXMLLoader(getClass().getResource(Pathes.PATH_TO_DESKTOP_ADMIN_VIEW));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setTitle(username);
+                stage.setScene(new Scene(root1));
+                stage.show();
 
             }
             else {
                 fxmlLoader = new FXMLLoader(getClass().getResource(Pathes.PATH_TO_DESKTOP_USER_VIEW));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setTitle(username);
+                stage.setScene(new Scene(root1));
+                stage.show();
             }
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Hotel Booking System. Registration");
-            stage.setScene(new Scene(root1));
-            stage.show();
+
 
         } else {
             status.setText("Invalid username or password");

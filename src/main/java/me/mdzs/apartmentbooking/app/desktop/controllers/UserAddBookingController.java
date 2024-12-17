@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class AddBookingController {
+public class UserAddBookingController {
     @FXML
     public Button addBookingButton;
     @FXML
@@ -36,12 +36,19 @@ public class AddBookingController {
 
     private JsonUtilsForBooking jsonUtilsForBooking = new JsonUtilsForBooking();
 
+    public String userName;
+
+    private String GetTitle() throws IOException{
+        Stage stage1 = (Stage) addBookingButton.getScene().getWindow();
+        userName = stage1.getTitle();
+        return userName;
+    }
+
     @FXML
     private void initialize() throws IOException {
         // Заполнение списка доступных номеров комнат
         List<Integer> availableRooms = JsonUtilsForRooms.readJsonToList();
         System.out.println(availableRooms);// Пример номеров
-//        List<Room> availableRooms = List.of(new Room(101), new Room(102)); // Пример номеров
         for (Integer room : availableRooms){
             roomNumberComboBox.getItems().add(room);
         }
@@ -61,10 +68,10 @@ public class AddBookingController {
         Stage stage1 = (Stage) backButton.getScene().getWindow();
         stage1.close();
         // Переход на окно регистрации
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Pathes.PATH_TO_DESKTOP_ADMIN_VIEW));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Pathes.PATH_TO_DESKTOP_USER_VIEW));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
-        stage.setTitle("Hotel Booking System. Login");
+        stage.setTitle(GetTitle());
         stage.setScene(new Scene(root1));
         stage.show();
     }
@@ -90,7 +97,7 @@ public class AddBookingController {
                 throw new IllegalArgumentException("Booking end date cannot be before start date");
             }
             Room number = new Room(roomNumber);
-            Booking booking = new Booking("Admin",number, guestsCount, bookingDateFrom.toString(), bookingDateTo.toString());
+            Booking booking = new Booking(GetTitle(), number, guestsCount, bookingDateFrom.toString(), bookingDateTo.toString());
             System.out.println("Booking added: " + booking);
             List<Booking> list = JsonUtilsForBooking.readJsonToList();
             list.add(booking);
