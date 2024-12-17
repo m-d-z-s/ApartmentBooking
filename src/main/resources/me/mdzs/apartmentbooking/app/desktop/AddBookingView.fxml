@@ -22,7 +22,7 @@
             <!-- Поле для ввода количества гостей -->
             <HBox spacing="10.0" alignment="CENTER_LEFT">
                 <Label text="Guests Count:" />
-                <TextField fx:id="guestsCountField" promptText="Enter guests count" />
+                <Spinner fx:id="guestsCountField" promptText="Enter guests count" initialValue="1" max="4" min="1" />
             </HBox>
 
             <!-- Поле для ввода даты начала бронирования -->

@@ -15,13 +15,14 @@
             <!-- Поле для ввода номера комнаты -->
             <HBox spacing="10.0" alignment="CENTER_LEFT">
                 <Label text="Room Number:" />
-                <ComboBox fx:id="roomNumberComboBox" promptText="Select booking" />
+                <TextField fx:id="roomNumber"  />
             </HBox>
-
 
             <!-- Кнопка "Добавить бронирование" -->
             <Button text="Add Booking" fx:id="addRoomButton"
                     onAction="#handleAddRoom" />
+            <Button text="Back" fx:id="backButton"
+                    onAction="#handleBackButton" />
         </VBox>
     </children>
 

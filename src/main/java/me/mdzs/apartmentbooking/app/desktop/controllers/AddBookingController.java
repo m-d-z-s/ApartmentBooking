@@ -5,15 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import me.mdzs.apartmentbooking.Pathes;
 import me.mdzs.apartmentbooking.domain.Booking;
 import me.mdzs.apartmentbooking.domain.Room;
 import me.mdzs.apartmentbooking.utils.JsonUtilsForBooking;
+import me.mdzs.apartmentbooking.utils.JsonUtilsForRooms;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -28,7 +26,7 @@ public class AddBookingController {
     private ComboBox<Integer> roomNumberComboBox;
 
     @FXML
-    private TextField guestsCountField;
+    private Spinner<Integer> guestsCountField;
 
     @FXML
     private DatePicker bookingDateFromPicker;
@@ -39,11 +37,13 @@ public class AddBookingController {
     private JsonUtilsForBooking jsonUtilsForBooking = new JsonUtilsForBooking();
 
     @FXML
-    private void initialize() {
+    private void initialize() throws IOException {
         // Заполнение списка доступных номеров комнат
-        List<Room> availableRooms = List.of(new Room(101), new Room(102)); // Пример номеров
-        for (Room room : availableRooms){
-            roomNumberComboBox.getItems().add(room.getRoomNumber());
+        List<Integer> availableRooms = JsonUtilsForRooms.readJsonToList();
+        System.out.println(availableRooms);// Пример номеров
+//        List<Room> availableRooms = List.of(new Room(101), new Room(102)); // Пример номеров
+        for (Integer room : availableRooms){
+            roomNumberComboBox.getItems().add(room);
         }
 //        roomNumberComboBox.getItems().addAll(availableRooms);
 
@@ -78,7 +78,7 @@ public class AddBookingController {
                 throw new IllegalArgumentException("Room number is not selected");
             }
 
-            int guestsCount = Integer.parseInt(guestsCountField.getText());
+            int guestsCount = guestsCountField.getValue();
             LocalDate bookingDateFrom = bookingDateFromPicker.getValue();
             LocalDate bookingDateTo = bookingDateToPicker.getValue();
 
