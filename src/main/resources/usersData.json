@@ -33,5 +33,10 @@
     "userName": "ffdf",
     "password": "werqwe",
     "isAdmin": false
+  },
+  {
+    "userName": "qwa",
+    "password": "zxc",
+    "isAdmin": false
   }
 ]

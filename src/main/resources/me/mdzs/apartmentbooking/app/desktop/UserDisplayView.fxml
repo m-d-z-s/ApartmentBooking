@@ -10,17 +10,20 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="me.mdzs.apartmentbooking.app.desktop.controllers.UserDisplayController"
             prefHeight="400.0" prefWidth="600.0">
-    <HBox spacing="10" layoutX="140.0" layoutY="10.0" prefHeight="40.0" prefWidth="560.0">
-        <Button text="Back" fx:id="backButton" onAction="#handleBackButton"/>
-    </HBox>
-    <TableView fx:id="roomsTable" layoutX="20.0" layoutY="60.0" prefHeight="320.0" prefWidth="560.0">
-        <columns>
-            <TableColumn fx:id="userName" text="Имя" prefWidth="100" />
-            <TableColumn fx:id="roomNumberColumn" text="Номер" prefWidth="100" />
-            <TableColumn fx:id="guestsCountColumn" text="Гостей" prefWidth="100" />
-            <TableColumn fx:id="dateColumnFrom" text="Забронирован с" prefWidth="150" />
-            <TableColumn fx:id="dateColumnTo" text="Забронирован по" prefWidth="150" />
-        </columns>
-    </TableView>
+    <VBox alignment="CENTER" spacing="20" layoutX="0" layoutY="0">
+        <!-- Кнопка по центру -->
+        <Button text="Back" fx:id="backButton" onAction="#handleBackButton" />
+
+        <!-- Таблица с номерами ниже кнопки -->
+        <TableView fx:id="roomsTable" prefHeight="320.0">
+            <columns>
+                <TableColumn fx:id="userName" text="Name" prefWidth="70" />
+                <TableColumn fx:id="roomNumberColumn" text="Room" prefWidth="70" />
+                <TableColumn fx:id="guestsCountColumn" text="Guests" prefWidth="50" />
+                <TableColumn fx:id="dateColumnFrom" text="Date From" prefWidth="100" />
+                <TableColumn fx:id="dateColumnTo" text="Date To" prefWidth="100" />
+            </columns>
+        </TableView>
+    </VBox>
 
 </AnchorPane>

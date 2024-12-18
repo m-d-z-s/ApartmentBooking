@@ -12,9 +12,10 @@
             prefHeight="400.0" prefWidth="600.0">
     <!-- Контейнер для кнопок -->
     <HBox spacing="10" layoutX="140.0" layoutY="10.0" prefHeight="40.0" prefWidth="560.0">
-        <Button text="Отображение" fx:id="displayBookingButton" onAction="#handleDisplayBooking"/>
-        <Button text="Добавить номер" fx:id="addRoomButton" onAction="#handleAddRoom"/>
-        <Button text="Добавить бронь" fx:id="addBookingButton" onAction="#handleAddBooking"/>
+        <Button text="Display" fx:id="displayBookingButton" onAction="#handleDisplayBooking"/>
+        <Button text="Add room" fx:id="addRoomButton" onAction="#handleAddRoom"/>
+        <Button text="Add booking" fx:id="addBookingButton" onAction="#handleAddBooking"/>
     </HBox>
+    <Button fx:id="logOut" text="LogOut" onAction="#handleBack" layoutX="200" layoutY="200"/>
 
 </AnchorPane>
