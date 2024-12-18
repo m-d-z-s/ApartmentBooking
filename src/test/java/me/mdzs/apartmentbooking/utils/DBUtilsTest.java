@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DBUtilsTest {
     private static final String URL = "jdbc:sqlite:users.db";
     private final User user1 = new User("Alice", "25", false);
-    private final User user2 = new User("Bob", "30", true);
+    private final User user2 = new User("olya", "54dv", true);
 
     @Test
     void initializeDatabase() {
@@ -17,7 +17,7 @@ class DBUtilsTest {
 
     @Test
     void addUser() {
-        DBUtils.addUser(user2, URL);
+        DBUtils.addUser(user1, URL);
     }
 
     @Test
