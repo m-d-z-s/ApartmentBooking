@@ -10,12 +10,12 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="me.mdzs.apartmentbooking.app.desktop.controllers.UserController"
             prefHeight="400.0" prefWidth="600.0">
-    <HBox>
+    <HBox alignment="CENTER" spacing="20" layoutX="200" layoutY="10">
 <!--        <Button fx:id="Profile" text="Profile" onAction="#handleProfile"/>-->
         <Button text="Display" fx:id="displayBookingButton" onAction="#handleDisplayBooking"/>
         <Button text="Add booking" fx:id="addBookingButton" onAction="#handleAddBooking"/>
     </HBox>
-    <Button fx:id="logOut" text="LogOut" onAction="#handleBack" layoutX="200" layoutY="200"/>
+    <Button fx:id="logOut" text="LogOut" onAction="#handleBack" layoutX="250" layoutY="200"/>
 
 
 </AnchorPane>

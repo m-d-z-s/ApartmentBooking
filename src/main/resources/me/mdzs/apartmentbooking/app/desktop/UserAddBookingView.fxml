@@ -11,7 +11,7 @@
             fx:controller="me.mdzs.apartmentbooking.app.desktop.controllers.UserAddBookingController"
             prefHeight="400.0" prefWidth="600.0">
     <children>
-        <VBox spacing="10.0" alignment="TOP_CENTER" layoutX="50.0" layoutY="50.0" prefWidth="500.0">
+        <VBox spacing="10.0" alignment="CENTER" layoutX="200.0" layoutY="50.0" prefWidth="500.0">
             <!-- Поле для ввода номера комнаты -->
             <HBox spacing="10.0" alignment="CENTER_LEFT">
                 <Label text="Room Number:" />
@@ -36,11 +36,14 @@
                 <DatePicker fx:id="bookingDateToPicker"  />
             </HBox>
 
-            <!-- Кнопка "Добавить бронирование" -->
-            <Button text="Add Booking" fx:id="addBookingButton"
-                    onAction="#handleAddBooking" />
-            <Button text="Back" fx:id="backButton"
-                    onAction="#handleBackButton" />
+            <HBox spacing="10.0" alignment="CENTER_LEFT">
+                <!-- Кнопка "Добавить бронирование" -->
+                <Button text="Add Booking" fx:id="addBookingButton"
+                        onAction="#handleAddBooking" />
+                <Button text="Back" fx:id="backButton"
+                        onAction="#handleBackButton" />
+            </HBox>
+
         </VBox>
     </children>
 

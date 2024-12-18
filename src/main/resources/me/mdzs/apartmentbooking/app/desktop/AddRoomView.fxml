@@ -24,6 +24,8 @@
             <Button text="Back" fx:id="backButton"
                     onAction="#handleBackButton" />
         </VBox>
+        <!-- Метка для вывода ошибок -->
+        <Label fx:id="errorLabel" layoutX="200" layoutY="250" textFill="red" visible="false"/>
     </children>
 
 </AnchorPane>

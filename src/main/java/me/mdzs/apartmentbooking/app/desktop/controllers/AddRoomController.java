@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import me.mdzs.apartmentbooking.Pathes;
 import me.mdzs.apartmentbooking.domain.Room;
@@ -24,12 +21,34 @@ public class AddRoomController {
     @FXML
     public Button addRoomButton;
     public Button backButton;
+    public Label errorLabel;
 
     public void handleAddRoom(ActionEvent actionEvent) throws IOException {
         List<Integer> list = JsonUtilsForRooms.readJsonToList();
-        Room room = new Room(Integer.parseInt(roomNumber.getText()));
+        int numberOfRoom;
+
+        try {
+            numberOfRoom = Integer.parseInt(roomNumber.getText());
+        } catch (NumberFormatException e) {
+            errorLabel.setText("Invalid room number! Please enter a valid number.");
+            errorLabel.setVisible(true);
+            return;
+        }
+
+        // Проверка на наличие дублирующегося номера комнаты
+        if (list.contains(numberOfRoom)) {
+            errorLabel.setText("Room number already exists!");
+            errorLabel.setVisible(true);
+            roomNumber.clear();  // Очищаем поле ввода
+            return;
+        }
+        Room room = new Room(numberOfRoom);
         list.add(room.getRoomNumber());
         JsonUtilsForRooms.writeListToJson(list);
+
+        roomNumber.clear();
+        errorLabel.setVisible(false);
+
 
     }
 
