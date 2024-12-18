@@ -40,7 +40,7 @@ public class Booking {
 
     @Override
     public String toString() {
-        return "Room{" +
+        return "Booking{" +
                 "userName=" + userName +
                 ", " + roomNumber +
                 ", guestsCount=" + guestsCount +

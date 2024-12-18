@@ -1,5 +1,6 @@
 package me.mdzs.apartmentbooking.app.desktop.controllers;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,9 +24,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDisplayController {
+    @FXML
     public Button backButton;
+
     @FXML
     private TableView<Booking> roomsTable;
+    @FXML
+    public TableColumn<Booking, String> userName;
 
     @FXML
     private TableColumn<Booking, Room> roomNumberColumn;
@@ -38,31 +43,53 @@ public class UserDisplayController {
 
     @FXML
     private TableColumn<Booking, String> dateColumnTo;
+
     private final UserDaoImplJson userdao = new UserDaoImplJson();
 
-    public TableColumn<Booking, String> userName;
+    String name;
 
-    private String GetTitle() throws IOException{
+
+    private void GetTitle() {
         Stage stage1 = (Stage) backButton.getScene().getWindow();
-        String title = stage1.getTitle();
-        return title;
+        if (stage1 != null) {
+            this.name = stage1.getTitle();
+        } else {
+            // Обработка случая, когда сцена не привязана (например, вывести лог или задать значение по умолчанию)
+            System.out.println("Сцена еще не привязана.");
+            this.name = "default"; // Значение по умолчанию, если сцена не привязана
+        }
     }
 
     @FXML
-    public void initialize() throws IOException {
-        // Настраиваем колонки таблицы
+    private void initialize() throws IOException {
+                // Настроим таблицу
         userName.setCellValueFactory(new PropertyValueFactory<>("userName"));
         roomNumberColumn.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
         guestsCountColumn.setCellValueFactory(new PropertyValueFactory<>("guestsCount"));
         dateColumnFrom.setCellValueFactory(new PropertyValueFactory<>("bookingDateFrom"));
         dateColumnTo.setCellValueFactory(new PropertyValueFactory<>("bookingDateTo"));
 
-        String name = GetTitle();
-        // Пример данных для таблицы
-        roomsTable.setItems(getRoomData(name));
+        // Ждем, пока окно будет полностью инициализировано
+        Platform.runLater(() -> {
+            Stage stage1 = (Stage) backButton.getScene().getWindow();
+            if (stage1 != null) {
+                name = stage1.getTitle();
+                System.out.println("Заголовок окна: " + name);
+                // Пример данных для таблицы
+                try {
+                    roomsTable.setItems(getRoomData(name));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
-        // Слушатель нажатий на строки таблицы
-        roomsTable.setOnMouseClicked(this::handleRowClick);
+                // Слушатель нажатий на строки таблицы
+                roomsTable.setOnMouseClicked(this::handleRowClick);
+            } else {
+                System.out.println("Не удалось получить Stage.");
+            }
+        });
+
+
     }
 
     private ObservableList<Booking> getRoomData(String name) throws IOException {
@@ -73,8 +100,8 @@ public class UserDisplayController {
                 listForUser.add(booking);
             }
         }
-        System.out.print(listForUser);
-        return FXCollections.observableArrayList(list); // Конвертация List в ObservableList
+        System.out.print("Список: " + listForUser);
+        return FXCollections.observableArrayList(listForUser); // Конвертация List в ObservableList
     }
 
     private void handleRowClick(MouseEvent event) {
@@ -145,7 +172,7 @@ public class UserDisplayController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Pathes.PATH_TO_DESKTOP_USER_VIEW));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
-        stage.setTitle("Hotel Booking System. Login");
+        stage.setTitle(name);
         stage.setScene(new Scene(root1));
         stage.show();
     }

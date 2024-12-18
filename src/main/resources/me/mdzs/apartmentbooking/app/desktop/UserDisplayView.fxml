@@ -17,7 +17,7 @@
         <columns>
             <TableColumn fx:id="userName" text="Имя" prefWidth="100" />
             <TableColumn fx:id="roomNumberColumn" text="Номер" prefWidth="100" />
-            <TableColumn fx:id="guestsCountColumn" text="Количество гостей" prefWidth="150" />
+            <TableColumn fx:id="guestsCountColumn" text="Гостей" prefWidth="100" />
             <TableColumn fx:id="dateColumnFrom" text="Забронирован с" prefWidth="150" />
             <TableColumn fx:id="dateColumnTo" text="Забронирован по" prefWidth="150" />
         </columns>

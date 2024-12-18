@@ -23,11 +23,12 @@ import java.util.List;
 
 public class DisplayController {
     public Button backButton;
+    public TableColumn<Booking, String> userName;
     @FXML
     private TableView<Booking> roomsTable;
 
     @FXML
-    private TableColumn<Booking, Room> roomNumberColumn;
+    private TableColumn<Booking, Integer> roomNumberColumn;
 
     @FXML
     private TableColumn<Booking, Integer> guestsCountColumn;
@@ -42,6 +43,7 @@ public class DisplayController {
     @FXML
     public void initialize() throws IOException {
         // Настраиваем колонки таблицы
+        userName.setCellValueFactory(new PropertyValueFactory<>("userName"));
         roomNumberColumn.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
         guestsCountColumn.setCellValueFactory(new PropertyValueFactory<>("guestsCount"));
         dateColumnFrom.setCellValueFactory(new PropertyValueFactory<>("bookingDateFrom"));

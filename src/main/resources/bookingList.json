@@ -16,5 +16,23 @@
     "guestsCount": 3,
     "bookingDateFrom": "2024-12-18",
     "bookingDateTo": "2024-12-25"
+  },
+  {
+    "userName": "Admin",
+    "roomNumber": {
+      "roomNumber": 201
+    },
+    "guestsCount": 3,
+    "bookingDateFrom": "2024-12-20",
+    "bookingDateTo": "2024-12-27"
+  },
+  {
+    "userName": "sss",
+    "roomNumber": {
+      "roomNumber": 201
+    },
+    "guestsCount": 4,
+    "bookingDateFrom": "2024-12-20",
+    "bookingDateTo": "2024-12-27"
   }
 ]

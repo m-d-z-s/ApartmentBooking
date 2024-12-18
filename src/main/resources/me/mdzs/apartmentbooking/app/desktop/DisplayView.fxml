@@ -19,8 +19,9 @@
     <!-- Таблица с номерами -->
     <TableView fx:id="roomsTable" layoutX="20.0" layoutY="60.0" prefHeight="320.0" prefWidth="560.0">
         <columns>
+            <TableColumn fx:id="userName" text="Имя" prefWidth="100" />
             <TableColumn fx:id="roomNumberColumn" text="Номер" prefWidth="100" />
-            <TableColumn fx:id="guestsCountColumn" text="Количество гостей" prefWidth="150" />
+            <TableColumn fx:id="guestsCountColumn" text="Гостей" prefWidth="100" />
             <TableColumn fx:id="dateColumnFrom" text="Забронирован с" prefWidth="150" />
             <TableColumn fx:id="dateColumnTo" text="Забронирован по" prefWidth="150" />
         </columns>
